@@ -23,7 +23,8 @@ var buttonFourClick = document.querySelector(".buttonAnswerFour");
 
 var selectedAnswer = 0;
 
-var timerCount = 5;
+var timerCount = 60;
+var questionCount = 0;
 
 //Questions array
 var questions = [
@@ -72,51 +73,49 @@ function openQuiz(){
     divStartMenu.setAttribute("class", "hidden");
     divQuiz.setAttribute("class", "visible");
     startTimer()
+    askQuestions(questionCount);
   });
 }
 
-function openScoreboard(){
-}
+function askQuestions(int) {
 
-function askQuestions(questionNumber) {
+  currentQuestionText.innerHTML = questions[int];
+  var questionMath = 0;
 
-  openQuiz(); 
-
-  currentQuestionText.innerHTML = questions[questionNumber];
-
-    rightAnswer = false;
-
-
-    if(questionNumber === 0){
-      questionNumber = 0
+    if(int === 0){
+      questionMath = 0
     }
     else{
-      questionNumber = questionNumber * 4;
+      questionMath = int * 4;
     }
 
-    buttonOne.innerHTML = answers[questionNumber];
-    buttonTwo.innerHTML = answers[questionNumber+1];
-    buttonThree.innerHTML = answers[questionNumber+2];
-    buttonFour.innerHTML = answers[questionNumber+3];
+    buttonOne.innerHTML = answers[questionMath];
+    buttonTwo.innerHTML = answers[questionMath+1];
+    buttonThree.innerHTML = answers[questionMath+2];
+    buttonFour.innerHTML = answers[questionMath+3];
 
     buttonOneClick.addEventListener("click", function(){
       console.log("button one pushed");
       selectedAnswer = 1;
+      checkAnswer(int, 1);
     });
 
     buttonTwoClick.addEventListener("click", function(){      
       console.log("button two pushed");
       selectedAnswer = 2;
+      checkAnswer(int, 2);
     });
 
     buttonThreeClick.addEventListener("click", function(){     
       console.log("button three pushed");
       selectedAnswer = 3
+      checkAnswer(int, 3);
     });
 
     buttonFourClick.addEventListener("click", function(){    
       console.log("button four pushed");
       selectedAnswer = 4
+      checkAnswer(int, 4);
     });
 
   return;
@@ -125,13 +124,52 @@ function askQuestions(questionNumber) {
 
 function testCode() {
   
-
-
-  askQuestions(2);
+  openQuiz();
 
 }
 
 testCode();
+
+function checkAnswer(question, answer){
+  
+  var correctAnswerAddress = answerAddresses[question];
+  var answeredAnswerAddress = 0;
+  
+  if(question === 0){
+    answeredAnswerAddress = answer-1;
+  }
+  else{
+    answeredAnswerAddress = ((question+1)*answer)-1;
+  }
+
+  //debug
+  console.log("Question", question);
+  console.log("Answer", answer)
+  console.log("correctAnswerAddress", correctAnswerAddress);
+  console.log("answeredAnswerAddress", answeredAnswerAddress);
+  console.log("Question Count", questionCount);
+
+  //Correct Answer
+  if(correctAnswerAddress == answeredAnswerAddress){
+    console.log("THATS RIGHT!")
+    questionCount++;
+    askQuestions(questionCount)
+  }
+  else if(correctAnswerAddress >= 13){
+    console.log("End Game");
+  }
+
+  //wrong answer
+  else{
+    console.log("You're dumb!")
+    questionCount++;
+    askQuestions(questionCount)
+  }
+}
+
+
+function openScoreboard(){
+}
 
 function setHighScores(){
 
@@ -148,6 +186,8 @@ function clearHighScores(){
 function endGame (){
   divQuiz.setAttribute("class", "hidden");
   divAllDone.setAttribute("class", "visible");
+
+
 
 }
 
