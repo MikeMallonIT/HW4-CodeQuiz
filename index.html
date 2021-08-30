@@ -1,24 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!--Character encoding-->
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <!--Title for browser tab-->
-        <title>Password Generator</title>
-        <!--Link to style sheet-->
-        <link rel="stylesheet" href="./assets/css/style.css">
-    </head>
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Link to style sheet-->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Code Quiz</title>
+</head>
     <body>
         <header>
-            <h1>JavaScript Quiz</h1>
+            <p class="viewHighScores">View High Scores</p>
+            <p class="timeLeft" id="timeLeft">Time Left: </p>
         </header>
+        
+        <main class="mainCard">
+            <section>
+                <div class="startMenu" id="startMenu">
+                    <h2>Coding Quiz Challange</h2>
+                    <p>Try to answer the following code-related questions within the time limit. 
+                        Keep in mind that incorrect answers will penalize your score/ time by ten seconds!
+                    </p>
+                    <button class="startButton" id="startButton">Start</button>
+                </div>
+            </section>
 
+            <section>
+                <div class="quiz" id="quiz">
+                    <h2 id="quizQuestion"></h2>
 
+                    <button class="buttonAnswerOne" id="buttonAnswerOne"></button>
+                    <button class="buttonAnswerTwo" id="buttonAnswerTwo"></button>
+                    <button class="buttonAnswerThree"id="buttonAnswerThree"></button>
+                    <button class="buttonAnswerFour"id="buttonAnswerFour"></button>
+                </div>
+            </section>
+
+            <section>
+                <div class="correctIncorrect">
+                    <h3></h3>
+                </div>
+            </section>
+
+            <section>
+                <div class="allDone" class="allDone">
+                    <h2>All Done</h2>
+                    <p>Your final score is xx</p>
+                    <!--ADD Keyboard input with a text box for initials-->
+                </div>
+            </section>
+
+            <section>
+                <div class="highScores">
+                    <h2>Highscores</h2>
+                    <!--high scores list-->
+                    <button class="goBack">Go Back</button>
+                    <button class="clearHighScores">Clear High Scores</button>
+                </div>
+            </section>
+        </main>
     <!--Link to the javascript file-->
     <script src="./assets/js/script.js"></script>
-    </body>
-
+</body>
 </html>
