@@ -11,7 +11,7 @@
     <body>
         <header>
             <p class="viewHighScores">View High Scores</p>
-            <p class="timeLeft" id="timeLeft">Time Left: </p>
+            <p class="timeLeft" id="timeLeft"></p>
         </header>
         
         <main class="mainCard">
@@ -38,7 +38,7 @@
 
             <section>
                 <div class="correctIncorrect">
-                    <h3></h3>
+                    <h3 id="correctIncorrectText"></h3>
                 </div>
             </section>
 
@@ -47,6 +47,8 @@
                     <h2>All Done</h2>
                     <p>Your final score is xx</p>
                     <!--ADD Keyboard input with a text box for initials-->
+                    <input type="text" id="initials" value="Some text...">
+                    <button class="submitButton" id="submitButton">Submit</button>
                 </div>
             </section>
 
@@ -54,8 +56,8 @@
                 <div class="highScores">
                     <h2>Highscores</h2>
                     <!--high scores list-->
-                    <button class="goBack">Go Back</button>
-                    <button class="clearHighScores">Clear High Scores</button>
+                    <button class="goBack" id="goBack">Go Back</button>
+                    <button class="clearHighScores" id="clearHighScores">Clear High Scores</button>
                 </div>
             </section>
         </main>
