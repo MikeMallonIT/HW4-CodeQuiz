@@ -51,6 +51,10 @@ var userInitials = "";
 var highScores = [];
 var highScoresNames = [];
 
+var finalScoreText = document.getElementById("finalScore");
+
+var scoreList = document.getElementById("scoreList");
+
 //Questions array
 var questions = [
 //Question 1
@@ -84,15 +88,19 @@ var answers = [
 ];
 
 //Keys linking address in questions array to correct answer address in answers array
-var answerAddresses = [2,6,11,14,19];
+var answerAddresses = [2,6,12,12,20];
+
+viewHighScoresText.addEventListener("click", function(){
+  openScoreboard();
+  divStartMenu.setAttribute("class", "hidden");
+});
 
 //Kicks app off when start button is pushed
 function openQuiz(){
   startButton.addEventListener("click", function() {
-
     divStartMenu.setAttribute("class", "hidden");
-    divHighScores.setAttribute("class", "hidden");
     divQuiz.setAttribute("class", "visible");
+    viewHighScoresText.setAttribute("class", "hidden");
 
     timerCount = 60;
     startTimer()
@@ -125,25 +133,25 @@ function askQuestions(int) {
     buttonOneClick.addEventListener("click", function(){
       console.log("button one pushed");
       selectedAnswer = 1;
-      checkAnswer(int, selectedAnswer);
+      checkAnswer(selectedAnswer);
     });
 
     buttonTwoClick.addEventListener("click", function(){      
       console.log("button two pushed");
       selectedAnswer = 2;
-      checkAnswer(int, selectedAnswer);
+      checkAnswer(selectedAnswer);
     });
 
     buttonThreeClick.addEventListener("click", function(){     
       console.log("button three pushed");
       selectedAnswer = 3;
-      checkAnswer(int, selectedAnswer);
+      checkAnswer(selectedAnswer);
     });
 
     buttonFourClick.addEventListener("click", function(){    
       console.log("button four pushed");
       selectedAnswer = 4;
-      checkAnswer(int, selectedAnswer);
+      checkAnswer(selectedAnswer);
     });
     }
 
@@ -154,27 +162,26 @@ function askQuestions(int) {
   }  
 
 //Check to see if the selected answer is correct
-function checkAnswer(question, answer){
+function checkAnswer(answer){
 
-  var correctAnswerAddress = answerAddresses[question];
+  var correctAnswerAddress = answerAddresses[questionCount];
   var answeredAnswerAddress = 0;
   
   //If the selected question is zero (first), subtract 1 for the array address
-  if(question === 0){
+  if(questionCount === 0){
     answeredAnswerAddress = answer-1;
   }
 
   //If the question is not zero, multiply question and answer to find correct address
   else{
-    answeredAnswerAddress = ((question*answer)-1);
+    answeredAnswerAddress = (((questionCount+1)*answer));
   }
 
   //debug
-  //console.log("Question", question);
-  //console.log("Answer", answer)
-  //console.log("correctAnswerAddress", correctAnswerAddress);
-  //console.log("answeredAnswerAddress", answeredAnswerAddress);
-  //console.log("Question Count", questionCount);
+  console.log("Answer", answer)
+  console.log("correctAnswerAddress", correctAnswerAddress);
+  console.log("answeredAnswerAddress", answeredAnswerAddress);
+  console.log("Question Count", questionCount);
 
   //End the game after the 5th question is asked
   //Functions if answer is correct
@@ -224,10 +231,17 @@ function endGame (){
   divAllDone.setAttribute("class", "visible");
   timerElement.setAttribute("class", "hidden");
 
+  finalScore = timerCount;
+
+  finalScoreText.innerHTML="Final Score: "+ finalScore;
+
   divCorrectIncorrect.setAttribute("class", "hidden");
 
   submitButtonClick.addEventListener("click", function(){
-    submitHighScore();
+    
+      let input = document.getElementById("initials").value;
+   
+    setHighScore(input);
   });
 }
 
@@ -236,6 +250,14 @@ function openScoreboard(){
   divAllDone.setAttribute("class", "hidden");
   divHighScores.setAttribute("class", "visible");
 
+  for(i=0; i>highScores.length; i++){
+
+
+  }
+
+  scoreList.innerHTML="User initials: "+ userInitials+ " Final Score: "+ finalScore;
+  console.log("User initials: ", userInitials, "Final Score", finalScore);
+
   goBackButton.addEventListener("click", function(){
     goBack();
     console.log("Go back button clicked");
@@ -243,13 +265,20 @@ function openScoreboard(){
 
   clearHighScoresButton.addEventListener("click", function(){
     clearHighScores();
+    openScoreboard();
+
   });
 }
 
 //Set the score after quiz is over
-function setHighScores(score){
-  finalScore = score;
+function setHighScore(initial){
+  finalScore = timerCount;
   highScores.push(finalScore);
+
+  userInitials = initial;
+
+  openScoreboard();
+  
 }
 
 //Return the high scores in decending order
@@ -263,14 +292,9 @@ function getHighScores(){
 function clearHighScores(){
 
   highScores = [];
+  userInitials = "";
+  finalScore = "";
 
-}
-
-function submitHighScore (){
-
-  setHighScores(timerCount);
-  openScoreboard();
-  userInitials = document.getElementById("initials").value;
 }
 
 function goBack(){
@@ -282,6 +306,10 @@ function goBack(){
   userInitials = "";
 
   divStartMenu.setAttribute("class", "visible");
+  divHighScores.setAttribute("class", "hidden");
+  divAllDone.setAttribute("class", "hidden");
+  location.reload();
+
 
   //Restart the quiz
   openQuiz();
@@ -303,7 +331,7 @@ function startTimer() {
       }
       
       else {
-        timerElement.innerHTML = ("Time's up! (GAME OVER)")
+        timerElement.innerHTML = "Time's up! (GAME OVER)";
         endGame();
       }
     }
