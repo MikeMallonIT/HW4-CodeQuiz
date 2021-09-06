@@ -213,12 +213,12 @@ function checkAnswer(answer){
 function correctIncorrect(value) {
 
   if(value == true){
-    divCorrectIncorrect.setAttribute("class", "visible");
+    divCorrectIncorrect.setAttribute("class", "visibleBool");
     correctIncorrectText.innerHTML="Correct!";
     finalScore +1;
   }
   else{
-    divCorrectIncorrect.setAttribute("class", "visible");
+    divCorrectIncorrect.setAttribute("class", "visibleBool");
     correctIncorrectText.innerHTML="Incorrect";
     finalScore -1;
   }
@@ -255,7 +255,7 @@ function openScoreboard(){
 
   }
 
-  scoreList.innerHTML="User initials: "+ userInitials+ " Final Score: "+ finalScore;
+  scoreList.innerHTML="User Initials: "+ userInitials+ " Final Score: "+ finalScore;
   console.log("User initials: ", userInitials, "Final Score", finalScore);
 
   goBackButton.addEventListener("click", function(){
