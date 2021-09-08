@@ -304,11 +304,11 @@ function getHighScores(){
 
   var theHighScoreArray = JSON.parse(localStorage.getItem("highScores")) || [];
 
-  linebreak = document.createElement("br");
 
   console.log("Array length", theHighScoreArray.length);
 
-  scoreList.append("Initials ", "Score ", document.createElement("br"));
+  scoreList.append("Initials, ", "Score ", document.createElement("br"));
+  scoreList.append(document.createElement("br"));
 
   for(let i = 1; i<=theHighScoreArray.length; i++){
     //scoreList.innerHTML= array[i];
@@ -321,7 +321,7 @@ function getHighScores(){
     
     console.log("Score: ", theHighScoreArray[testing].highScore, "Initial: ", theHighScoreArray[testing].highScoreInitial);
 
-    scoreList.append(theHighScoreArray[testing].highScoreInitial + " " + theHighScoreArray[testing].highScore);
+    scoreList.append(theHighScoreArray[testing].highScoreInitial + ", " + theHighScoreArray[testing].highScore);
     scoreList.append(document.createElement("br"));
 
     //append
@@ -336,11 +336,9 @@ function clearHighScores(){
 
   localStorage.setItem("highScores", JSON.stringify([]));
 
-  highScores = [];
-  userInitials = "";
-  finalScore = "";
+  //Restart the quiz
+  location.reload();
 
-  console.log("High scores cleared... hopefully");
 }
 
 function goBack(){
