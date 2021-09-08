@@ -52,7 +52,6 @@ var highScores = [];
 var highScoresNames = [];
 
 var finalScoreText = document.getElementById("finalScore");
-
 var scoreList = document.getElementById("scoreList");
 
 //Questions array
@@ -183,12 +182,6 @@ function checkAnswer(answer){
     answeredAnswerAddress = (((questionCount+1)*answer));
   }
 
-  //debug
-  //console.log("Answer", answer)
-  //console.log("correctAnswerAddress", correctAnswerAddress);
-  //console.log("answeredAnswerAddress", answeredAnswerAddress);
-  console.log("Question Count", questionCount);
-
   //End the game after the 5th question is asked
   //Functions if answer is correct
   if(correctAnswerAddress == answeredAnswerAddress){
@@ -213,9 +206,7 @@ function checkAnswer(answer){
       gameOver = true;
     }
   }
-
   var answeredAnswerAddress = 0;
-
 }
 
 //Display "correct or incorrect" when answer button is clicked
@@ -272,7 +263,6 @@ function openScoreboard(){
   clearHighScoresButton.addEventListener("click", function(){
     clearHighScores();
     openScoreboard();
-
   });
 }
 
@@ -287,11 +277,10 @@ function setHighScore(initial){
   }
 
   save(score);
-
   openScoreboard();
-  
 }
 
+//Save the data to the local storage
 function save(data){
   var array = JSON.parse(localStorage.getItem("highScores")) || [];
   array.push(data);
@@ -304,9 +293,6 @@ function getHighScores(){
 
   var theHighScoreArray = JSON.parse(localStorage.getItem("highScores")) || [];
 
-
-  console.log("Array length", theHighScoreArray.length);
-
   scoreList.append("Initials, ", "Score ", document.createElement("br"));
   scoreList.append(document.createElement("br"));
 
@@ -315,20 +301,13 @@ function getHighScores(){
     //console.log("TEST THE STORAGE ARRAY", "Initials", theHighScoreArray[i].highScore);
     
     var testing = i-1;
-
-    //theHighScoreArray.length;
-    //console.log(i);
     
     console.log("Score: ", theHighScoreArray[testing].highScore, "Initial: ", theHighScoreArray[testing].highScoreInitial);
 
     scoreList.append(theHighScoreArray[testing].highScoreInitial + ", " + theHighScoreArray[testing].highScore);
     scoreList.append(document.createElement("br"));
 
-    //append
   }
-
-  //console.log("Singular Test: ", theHighScoreArray[1].highScore);
-
 }
 
 //Clear the high scores when clear button is pushed
@@ -338,9 +317,9 @@ function clearHighScores(){
 
   //Restart the quiz
   location.reload();
-
 }
 
+//Restarts the application
 function goBack(){
   //reset variables
   selectedAnswer = 0;
@@ -357,10 +336,7 @@ function goBack(){
   divAllDone.setAttribute("class", "hidden");
   
   //Restart the quiz
-  location.reload();
-
-
-  
+  location.reload(); 
 }
 //----END SCOREBAORD FUNCTIONS----
 
