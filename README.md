@@ -1,113 +1,41 @@
-# 04 Web APIs: Code Quiz
+# Homework 4 - Code Quiz - Michael Mallon
 
-## Your Task
+## What I did
 
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
+This week’s homework assignment challenged me by demanding a more advanced understanding of JS functions, APIs, and local storage. I built a coding quiz by building blank sections in HTML then filling them with data in JavaScript. I also used CSS styles to make the sections visible and hidden
 
-To help familiarize you with these tests and allow you to use the skills covered in this unit, this week’s homework invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
-
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
-
-## User Story
-
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
-
-## Acceptance Criteria
-
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
-```
-
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
-
-## Grading Requirements
-
-This homework is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the preceding acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
-
----
-
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+The JavaScript I wrote stores the quiz data in three arrays: questions, answers and an answer key. When questions are presented the app will compare the chosen answer to the answer key. If correct, the next question is displayed. If incorrect, 10 seconds is deducted from the time and the next question is displayed. 
 
 
+<br>
 
-https://www.bestcssbuttongenerator.com/#/1
+### Motivation:
+This was by far the most challenged I have felt in the Coding Bootcamp program. This was the first time where I used local storage and manipulated CSS to hide and show different HTML/ JavaScript elements. The motivation to learn how to create a multi-page application was fulfilled… after lots of time spent debugging
 
-https://stackoverflow.com/questions/2163558/how-to-insert-text-in-a-td-with-id-using-javascript
+<br>
 
-https://www.w3schools.com/jsref/dom_obj_text.asp
+### Problems I solved:
+    * Created several buttons that changed their text values and reacted when pushed
+    * Used JavaScript to change the CSS class used for HTML elements
+    * Used local storage to set and get array values
 
-https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_text_get
+<br />
+<br />
 
-https://www.w3schools.com/jsref/jsref_sort.asp
+## Installation:
+Download all associated files in this repository including the index.html file and all files in the assets folder. Style sheet is located in ../assets/css/style.css, JavaScript is located in ../assets/js/script/js
 
-https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_sort3
+## Usage:
+The website has been deployed and can be accessed publicly by clicking [here](https://mikemallonit.github.io/HW4-CodeQuiz/)
 
-https://www.w3schools.com/jsref/met_loc_reload.asp
+The website should look like this:
+![Website Screen Shot](./assets/websiteScreenshot.pdf)
 
-https://www.w3schools.com/css/css_comments.asp
+<br />
 
-https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-
-https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
-
-https://stackoverflow.com/questions/43762363/how-to-store-an-array-of-objects-in-local-storage
+## Credits
+- SMU
+- https://developer.mozilla.org/
+- https://www.bestcssbuttongenerator.com
+- https://stackoverflow.com
+- https://www.w3schools.com
