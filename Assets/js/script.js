@@ -88,7 +88,7 @@ var answers = [
 ];
 
 //Keys linking address in questions array to correct answer address in answers array
-var answerAddresses = [2,6,12,12,20];
+var answerKey = [2,6,12,12,20];
 
 viewHighScoresText.addEventListener("click", function(){
   openScoreboard();
@@ -101,8 +101,12 @@ function openQuiz(){
     divStartMenu.setAttribute("class", "hidden");
     divQuiz.setAttribute("class", "visible");
     viewHighScoresText.setAttribute("class", "hidden");
+    timerElement.setAttribute("class", "timeLeft");
 
     timerCount = 60;
+    questionCount = 0;
+
+
     startTimer()
     askQuestions(questionCount);
   });
@@ -129,27 +133,28 @@ function askQuestions(int) {
     buttonFour.innerHTML = answers[questionMath+3];
 
     //Submits the chosen answer
+    
     if(selectedAnswer == 0){
     buttonOneClick.addEventListener("click", function(){
-      console.log("button one pushed");
+      //console.log("button one pushed");
       selectedAnswer = 1;
       checkAnswer(selectedAnswer);
     });
 
     buttonTwoClick.addEventListener("click", function(){      
-      console.log("button two pushed");
+      //console.log("button two pushed");
       selectedAnswer = 2;
       checkAnswer(selectedAnswer);
     });
 
     buttonThreeClick.addEventListener("click", function(){     
-      console.log("button three pushed");
+      //console.log("button three pushed");
       selectedAnswer = 3;
       checkAnswer(selectedAnswer);
     });
 
     buttonFourClick.addEventListener("click", function(){    
-      console.log("button four pushed");
+      //console.log("button four pushed");
       selectedAnswer = 4;
       checkAnswer(selectedAnswer);
     });
@@ -157,6 +162,7 @@ function askQuestions(int) {
 
     //Resets the selected answer variable
     selectedAnswer=0;
+    
 
   return;
   }  
@@ -164,7 +170,7 @@ function askQuestions(int) {
 //Check to see if the selected answer is correct
 function checkAnswer(answer){
 
-  var correctAnswerAddress = answerAddresses[questionCount];
+  var correctAnswerAddress = answerKey[questionCount];
   var answeredAnswerAddress = 0;
   
   //If the selected question is zero (first), subtract 1 for the array address
@@ -178,9 +184,9 @@ function checkAnswer(answer){
   }
 
   //debug
-  console.log("Answer", answer)
-  console.log("correctAnswerAddress", correctAnswerAddress);
-  console.log("answeredAnswerAddress", answeredAnswerAddress);
+  //console.log("Answer", answer)
+  //console.log("correctAnswerAddress", correctAnswerAddress);
+  //console.log("answeredAnswerAddress", answeredAnswerAddress);
   console.log("Question Count", questionCount);
 
   //End the game after the 5th question is asked
@@ -207,6 +213,9 @@ function checkAnswer(answer){
       gameOver = true;
     }
   }
+
+  var answeredAnswerAddress = 0;
+
 }
 
 //Display "correct or incorrect" when answer button is clicked
@@ -250,13 +259,10 @@ function openScoreboard(){
   divAllDone.setAttribute("class", "hidden");
   divHighScores.setAttribute("class", "visible");
 
-  for(i=0; i>highScores.length; i++){
+  getHighScores();
 
-
-  }
-
-  scoreList.innerHTML="User Initials: "+ userInitials+ " Final Score: "+ finalScore;
-  console.log("User initials: ", userInitials, "Final Score", finalScore);
+  //scoreList.innerHTML="User Initials: "+ userInitials+ " Final Score: "+ finalScore;
+  //console.log("User initials: ", userInitials, "Final Score", finalScore);
 
   goBackButton.addEventListener("click", function(){
     goBack();
@@ -273,46 +279,90 @@ function openScoreboard(){
 //Set the score after quiz is over
 function setHighScore(initial){
   finalScore = timerCount;
-  highScores.push(finalScore);
-
   userInitials = initial;
+
+  var score = {
+    highScore: timerCount,
+    highScoreInitial: initial
+  }
+
+  save(score);
 
   openScoreboard();
   
 }
 
+function save(data){
+  var array = JSON.parse(localStorage.getItem("highScores")) || [];
+  array.push(data);
+
+  localStorage.setItem("highScores", JSON.stringify(array));
+}
+
 //Return the high scores in decending order
 function getHighScores(){
 
-  console.log("ALL OF THE HIGH SCORES", highScores.sort(function(a, b){return b-a}));
+  var theHighScoreArray = JSON.parse(localStorage.getItem("highScores")) || [];
+
+  linebreak = document.createElement("br");
+
+  console.log("Array length", theHighScoreArray.length);
+
+  scoreList.append("Initials ", "Score ", document.createElement("br"));
+
+  for(let i = 1; i<=theHighScoreArray.length; i++){
+    //scoreList.innerHTML= array[i];
+    //console.log("TEST THE STORAGE ARRAY", "Initials", theHighScoreArray[i].highScore);
+    
+    var testing = i-1;
+
+    //theHighScoreArray.length;
+    //console.log(i);
+    
+    console.log("Score: ", theHighScoreArray[testing].highScore, "Initial: ", theHighScoreArray[testing].highScoreInitial);
+
+    scoreList.append(theHighScoreArray[testing].highScoreInitial + " " + theHighScoreArray[testing].highScore);
+    scoreList.append(document.createElement("br"));
+
+    //append
+  }
+
+  //console.log("Singular Test: ", theHighScoreArray[1].highScore);
 
 }
 
 //Clear the high scores when clear button is pushed
 function clearHighScores(){
 
+  localStorage.setItem("highScores", JSON.stringify([]));
+
   highScores = [];
   userInitials = "";
   finalScore = "";
 
+  console.log("High scores cleared... hopefully");
 }
 
 function goBack(){
   //reset variables
   selectedAnswer = 0;
+  timerCount = 60;
   questionCount = 0;
+  
+  //Scoreboard variables
   gameOver = false;
-  inalScore = 0;
+  finalScore = 0;
   userInitials = "";
 
   divStartMenu.setAttribute("class", "visible");
   divHighScores.setAttribute("class", "hidden");
   divAllDone.setAttribute("class", "hidden");
+  
+  //Restart the quiz
   location.reload();
 
 
-  //Restart the quiz
-  openQuiz();
+  
 }
 //----END SCOREBAORD FUNCTIONS----
 

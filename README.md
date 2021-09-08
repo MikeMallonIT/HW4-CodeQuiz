@@ -91,3 +91,23 @@ You are required to submit BOTH of the following for review:
 
 
 https://www.bestcssbuttongenerator.com/#/1
+
+https://stackoverflow.com/questions/2163558/how-to-insert-text-in-a-td-with-id-using-javascript
+
+https://www.w3schools.com/jsref/dom_obj_text.asp
+
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_text_get
+
+https://www.w3schools.com/jsref/jsref_sort.asp
+
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_sort3
+
+https://www.w3schools.com/jsref/met_loc_reload.asp
+
+https://www.w3schools.com/css/css_comments.asp
+
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+
+https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
+
+https://stackoverflow.com/questions/43762363/how-to-store-an-array-of-objects-in-local-storage
