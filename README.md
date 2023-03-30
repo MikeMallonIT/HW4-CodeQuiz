@@ -1,7 +1,6 @@
 # Homework 4 - Code Quiz - Michael Mallon
 
 ## What I did
-
 This week’s homework assignment challenged me by demanding a more advanced understanding of JS functions, APIs, and local storage. I built a coding quiz by building blank sections in HTML then filling them with data in JavaScript. I also used CSS styles to make the sections visible and hidden
 
 The JavaScript I wrote stores the quiz data in three arrays: questions, answers and an answer key. When questions are presented the app will compare the chosen answer to the answer key. If correct, the next question is displayed. If incorrect, 10 seconds is deducted from the time and the next question is displayed. 
@@ -14,7 +13,6 @@ This was by far the most challenged I have felt in the Coding Bootcamp program. 
     * Used JavaScript to change the CSS class used for HTML elements
     * Used local storage to set and get array values
     
-
 ## Installation:
 Download all associated files in this repository including the index.html file and all files in the assets folder. Style sheet is located in ../assets/css/style.css, JavaScript is located in ../assets/js/script/js
 
@@ -23,7 +21,6 @@ The website has been deployed and can be accessed publicly by clicking [here](ht
 
 The website should look like this:
 ![Website Screen Shot](./assets/quiz.jpg)
-
 
 ## Credits
 - SMU
