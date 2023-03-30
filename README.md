@@ -20,7 +20,7 @@ Download all associated files in this repository including the index.html file a
 The website has been deployed and can be accessed publicly by clicking [here](https://main.d2kyqxd7lr4f7h.amplifyapp.com/)
 
 The website should look like this:
-![Website Screen Shot](./assets/quiz.jpg)
+![Website Screen Shot](./Assets/quiz.jpg)
 
 ## Credits
 - SMU
